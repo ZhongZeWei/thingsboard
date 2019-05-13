@@ -30,6 +30,7 @@ import org.thingsboard.server.common.data.page.TimePageData;
 
 /**
  * Created by ashvayka on 11.05.17.
+ * Alarm表的service接口
  */
 public interface AlarmService {
 

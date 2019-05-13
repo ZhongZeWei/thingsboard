@@ -28,6 +28,7 @@ import java.util.UUID;
 
 /**
  * Created by ashvayka on 11.05.17.
+ * Alarm表的dao类接口
  */
 public interface AlarmDao extends Dao<Alarm> {
 

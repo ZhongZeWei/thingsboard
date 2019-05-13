@@ -47,6 +47,9 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * 邮件服务实现类
+ */
 @Service
 @Slf4j
 public class DefaultMailService implements MailService {

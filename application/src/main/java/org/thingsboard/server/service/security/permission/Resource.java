@@ -19,6 +19,9 @@ import org.thingsboard.server.common.data.EntityType;
 
 import java.util.Optional;
 
+/**
+ * 用户来源
+ */
 public enum Resource {
     ADMIN_SETTINGS(),
     ALARM(EntityType.ALARM),

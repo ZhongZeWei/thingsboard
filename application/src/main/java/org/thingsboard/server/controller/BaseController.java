@@ -253,6 +253,11 @@ public abstract class BaseController {
         return new TextPageLink(limit, textSearch, idOffsetUuid, textOffset);
     }
 
+    /**
+     * 获取用户名
+     * @return
+     * @throws ThingsboardException
+     */
     protected SecurityUser getCurrentUser() throws ThingsboardException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof SecurityUser) {

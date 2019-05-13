@@ -15,6 +15,9 @@
  */
 package org.thingsboard.server.service.security.permission;
 
+/**
+ * 权限枚举
+ */
 public enum Operation {
 
     ALL, CREATE, READ, WRITE, DELETE, ASSIGN_TO_CUSTOMER, UNASSIGN_FROM_CUSTOMER, RPC_CALL,

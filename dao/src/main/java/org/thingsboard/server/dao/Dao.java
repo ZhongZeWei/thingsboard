@@ -21,16 +21,25 @@ import org.thingsboard.server.common.data.id.TenantId;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * dao类接口
+ * @param <T>
+ */
 public interface Dao<T> {
 
+
+    //根据租客id查找
     List<T> find(TenantId tenantId);
 
+    //根据租客id，UUID查找
     T findById(TenantId tenantId, UUID id);
-
+    //根据租客id，UUID异步查找
     ListenableFuture<T> findByIdAsync(TenantId tenantId, UUID id);
 
+    //根据租客id保存数据
     T save(TenantId tenantId, T t);
 
+    //根据租客id，UUID删除数据
     boolean removeById(TenantId tenantId, UUID id);
 
 }

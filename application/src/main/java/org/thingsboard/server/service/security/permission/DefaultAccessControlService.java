@@ -36,6 +36,9 @@ import java.util.*;
 
 import static org.thingsboard.server.dao.service.Validator.validateId;
 
+/**
+ * 权限控制服务类
+ */
 @Service
 @Slf4j
 public class DefaultAccessControlService implements AccessControlService {
@@ -43,6 +46,7 @@ public class DefaultAccessControlService implements AccessControlService {
     private static final String INCORRECT_TENANT_ID = "Incorrect tenantId ";
     private static final String YOU_DON_T_HAVE_PERMISSION_TO_PERFORM_THIS_OPERATION = "You don't have permission to perform this operation!";
 
+    //授权用户的合集
     private final Map<Authority, Permissions> authorityPermissions = new HashMap<>();
 
     public DefaultAccessControlService(
@@ -56,7 +60,9 @@ public class DefaultAccessControlService implements AccessControlService {
 
     @Override
     public void checkPermission(SecurityUser user, Resource resource, Operation operation) throws ThingsboardException {
+        //获得权限检查器
         PermissionChecker permissionChecker = getPermissionChecker(user.getAuthority(), resource);
+        //判断是否有权限
         if (!permissionChecker.hasPermission(user, operation)) {
             permissionDenied();
         }
@@ -83,6 +89,10 @@ public class DefaultAccessControlService implements AccessControlService {
         return permissionChecker.get();
     }
 
+    /**
+     * 权限拒绝
+     * @throws ThingsboardException
+     */
     private void permissionDenied() throws ThingsboardException {
         throw new ThingsboardException(YOU_DON_T_HAVE_PERMISSION_TO_PERFORM_THIS_OPERATION,
                 ThingsboardErrorCode.PERMISSION_DENIED);

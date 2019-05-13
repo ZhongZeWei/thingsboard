@@ -35,6 +35,9 @@ import org.thingsboard.server.service.update.model.UpdateMessage;
 
 @RestController
 @RequestMapping("/api/admin")
+/**
+ * Admin接口控制器
+ */
 public class AdminController extends BaseController {
 
     @Autowired

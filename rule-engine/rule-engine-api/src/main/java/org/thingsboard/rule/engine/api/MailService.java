@@ -22,6 +22,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+/**
+ * 邮件服务接口
+ */
 public interface MailService {
 
     void updateMailConfiguration();

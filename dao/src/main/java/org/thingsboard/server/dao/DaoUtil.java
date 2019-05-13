@@ -25,6 +25,12 @@ public abstract class DaoUtil {
     private DaoUtil() {
     }
 
+    /**
+     * 转换为list
+     * @param toDataList
+     * @param <T>
+     * @return
+     */
     public static <T> List<T> convertDataList(Collection<? extends ToData<T>> toDataList) {
         List<T> list = Collections.emptyList();
         if (toDataList != null && !toDataList.isEmpty()) {
@@ -38,6 +44,12 @@ public abstract class DaoUtil {
         return list;
     }
 
+    /**
+     * 返回自己
+     * @param data
+     * @param <T>
+     * @return
+     */
     public static <T> T getData(ToData<T> data) {
         T object = null;
         if (data != null) {
@@ -46,6 +58,12 @@ public abstract class DaoUtil {
         return object;
     }
 
+    /**
+     * 返回自己
+     * @param data
+     * @param <T>
+     * @return
+     */
     public static <T> T getData(Optional<? extends ToData<T>> data) {
         T object = null;
         if (data.isPresent()) {
@@ -54,6 +72,11 @@ public abstract class DaoUtil {
         return object;
     }
 
+    /**
+     * 返回UUID
+     * @param idBased
+     * @return
+     */
     public static UUID getId(UUIDBased idBased) {
         UUID id = null;
         if (idBased != null) {
@@ -62,6 +85,11 @@ public abstract class DaoUtil {
         return id;
     }
 
+    /**
+     * 返回UUID list
+     * @param idBasedIds
+     * @return
+     */
     public static List<UUID> toUUIDs(List<? extends UUIDBased> idBasedIds) {
         List<UUID> ids = new ArrayList<>();
         for (UUIDBased idBased : idBasedIds) {
