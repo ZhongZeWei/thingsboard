@@ -23,6 +23,9 @@ import org.thingsboard.server.common.data.kv.Aggregation;
 
 import java.util.UUID;
 
+/**
+ * 表字段的枚举
+ */
 public class ModelConstants {
 
     private ModelConstants() {

@@ -25,6 +25,7 @@ import java.util.UUID;
 
 /**
  * Created by ashvayka on 13.07.17.
+ * pojo类的父类
  */
 @Data
 @MappedSuperclass

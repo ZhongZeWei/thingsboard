@@ -17,6 +17,10 @@ package org.thingsboard.server.dao.model;
 
 import java.util.UUID;
 
+/**
+ * 基础pojo类接口，设置和返回id
+ * @param <D>
+ */
 public interface BaseEntity<D> extends ToData<D> {
 
     UUID getId();

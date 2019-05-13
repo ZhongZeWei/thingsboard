@@ -17,7 +17,7 @@ package org.thingsboard.server.dao.model;
 
 /**
  * The interface To dto.
- *
+ *返回自身数据的接口
  * @param <T> the type parameter
  */
 public interface ToData<T> {
