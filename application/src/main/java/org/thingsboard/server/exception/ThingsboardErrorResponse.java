@@ -20,6 +20,9 @@ import org.thingsboard.server.common.data.exception.ThingsboardErrorCode;
 
 import java.util.Date;
 
+/**
+ * 错误响应类
+ */
 public class ThingsboardErrorResponse {
     // HTTP Response Status Code
     private final HttpStatus status;
