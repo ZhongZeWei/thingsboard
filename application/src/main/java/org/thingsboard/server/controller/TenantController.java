@@ -1,12 +1,12 @@
 /**
  * Copyright © 2016-2019 The Thingsboard Authors
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -85,22 +85,39 @@ public class TenantController extends BaseController {
         }
     }
 
+    /**
+     * 删除
+     * @param strTenantId
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAuthority('SYS_ADMIN')")
     @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteTenant(@PathVariable("tenantId") String strTenantId) throws ThingsboardException {
+        //检查是否为空
         checkParameter("tenantId", strTenantId);
         try {
             TenantId tenantId = new TenantId(toUUID(strTenantId));
+            //检查是否有这个租客
             checkTenantId(tenantId, Operation.DELETE);
             tenantService.deleteTenant(tenantId);
-
+            //权限检查
             actorService.onEntityStateChange(tenantId, tenantId, ComponentLifecycleEvent.DELETED);
         } catch (Exception e) {
             throw handleException(e);
         }
     }
 
+
+    /**
+     * api/tenants?limit=30&textSearch=
+     * @param limit
+     * @param textSearch
+     * @param idOffset
+     * @param textOffset
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAuthority('SYS_ADMIN')")
     @RequestMapping(value = "/tenants", params = {"limit"}, method = RequestMethod.GET)
     @ResponseBody
@@ -109,7 +126,9 @@ public class TenantController extends BaseController {
                                            @RequestParam(required = false) String idOffset,
                                            @RequestParam(required = false) String textOffset) throws ThingsboardException {
         try {
+            //
             TextPageLink pageLink = createPageLink(limit, textSearch, idOffset, textOffset);
+            //检查结果
             return checkNotNull(tenantService.findTenants(pageLink));
         } catch (Exception e) {
             throw handleException(e);

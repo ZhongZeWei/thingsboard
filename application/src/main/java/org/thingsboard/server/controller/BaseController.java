@@ -201,6 +201,7 @@ public abstract class BaseController {
         }
     }
 
+    //检查入参，非空则返回，为空就报错
     <T> T checkNotNull(T reference) throws ThingsboardException {
         if (reference == null) {
             throw new ThingsboardException("Requested item wasn't found!", ThingsboardErrorCode.ITEM_NOT_FOUND);
@@ -245,6 +246,14 @@ public abstract class BaseController {
     }
 
 
+    /**
+     * 构建查询对象
+     * @param limit
+     * @param textSearch
+     * @param idOffset
+     * @param textOffset
+     * @return
+     */
     TextPageLink createPageLink(int limit, String textSearch, String idOffset, String textOffset) {
         UUID idOffsetUuid = null;
         if (StringUtils.isNotEmpty(idOffset)) {
@@ -267,11 +276,20 @@ public abstract class BaseController {
         }
     }
 
+    /**
+     * 检查是否有这个租客
+     * @param tenantId
+     * @param operation
+     * @return
+     * @throws ThingsboardException
+     */
     Tenant checkTenantId(TenantId tenantId, Operation operation) throws ThingsboardException {
         try {
+            //非空检查
             validateId(tenantId, INCORRECT_TENANT_ID + tenantId);
             Tenant tenant = tenantService.findTenantById(tenantId);
             checkNotNull(tenant);
+
             accessControlService.checkPermission(getCurrentUser(), Resource.TENANT, operation, tenantId, tenant);
             return tenant;
         } catch (Exception e) {

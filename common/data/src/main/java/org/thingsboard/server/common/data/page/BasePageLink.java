@@ -24,6 +24,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.UUID;
 
+/**
+ *页面查询条件
+ */
 @RequiredArgsConstructor
 @AllArgsConstructor
 public abstract class BasePageLink implements Serializable {
