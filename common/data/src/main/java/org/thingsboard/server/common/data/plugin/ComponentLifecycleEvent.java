@@ -19,6 +19,7 @@ import java.io.Serializable;
 
 /**
  * @author Andrew Shvayka
+ *组件生命周期
  */
 public enum ComponentLifecycleEvent implements Serializable {
     CREATED, STARTED, ACTIVATED, SUSPENDED, UPDATED, STOPPED, DELETED

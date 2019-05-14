@@ -155,6 +155,7 @@ public class DefaultActorService implements ActorService {
     @Override
     public void onEntityStateChange(TenantId tenantId, EntityId entityId, ComponentLifecycleEvent state) {
         log.trace("[{}] Processing {} state change event: {}", tenantId, entityId.getEntityType(), state);
+        //广播
         broadcast(new ComponentLifecycleMsg(tenantId, entityId, state));
     }
 
@@ -171,6 +172,10 @@ public class DefaultActorService implements ActorService {
         appActor.tell(new SendToClusterMsg(deviceId, msg), ActorRef.noSender());
     }
 
+    /**
+     * 广播消息
+     * @param msg
+     */
     public void broadcast(ToAllNodesMsg msg) {
         actorContext.getEncodingService().encode(msg);
         rpcService.broadcast(new RpcBroadcastMsg(ClusterAPIProtos.ClusterMessage

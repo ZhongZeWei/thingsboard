@@ -41,6 +41,7 @@ public class ComponentLifecycleMsg implements TbActorMsg, TenantAwareMsg, ToAllN
     @Getter
     private final ComponentLifecycleEvent event;
 
+    //组件生命周期消息
     public ComponentLifecycleMsg(TenantId tenantId, EntityId entityId, ComponentLifecycleEvent event) {
         this.tenantId = tenantId;
         this.entityId = entityId;

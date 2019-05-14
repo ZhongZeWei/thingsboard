@@ -38,6 +38,9 @@ import org.thingsboard.server.service.install.InstallScripts;
 import org.thingsboard.server.service.security.permission.Operation;
 import org.thingsboard.server.service.security.permission.Resource;
 
+/**
+ * 租客管理
+ */
 @RestController
 @RequestMapping("/api")
 @Slf4j
@@ -63,6 +66,12 @@ public class TenantController extends BaseController {
         }
     }
 
+    /**
+     * 增加租客
+     * @param tenant
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAuthority('SYS_ADMIN')")
     @RequestMapping(value = "/tenant", method = RequestMethod.POST)
     @ResponseBody
