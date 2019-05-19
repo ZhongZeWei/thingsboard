@@ -85,6 +85,7 @@ public class JwtTokenFactory {
 
         ZonedDateTime currentTime = ZonedDateTime.now();
 
+        //生成一个token
         String token = Jwts.builder()
                 .setClaims(claims)
                 .setIssuer(settings.getTokenIssuer())
@@ -96,6 +97,7 @@ public class JwtTokenFactory {
         return new AccessJwtToken(token, claims);
     }
 
+    //解析token，保存到用户消息类中
     public SecurityUser parseAccessJwtToken(RawAccessJwtToken rawAccessToken) {
         Jws<Claims> jwsClaims = rawAccessToken.parseClaims(settings.getTokenSigningKey());
         Claims claims = jwsClaims.getBody();

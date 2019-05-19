@@ -24,6 +24,9 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * 用户消息类
+ */
 public class SecurityUser extends User {
 
     private static final long serialVersionUID = -797397440703066079L;

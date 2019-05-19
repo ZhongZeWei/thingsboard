@@ -62,6 +62,9 @@ public class UserController extends BaseController {
     public static final String YOU_DON_T_HAVE_PERMISSION_TO_PERFORM_THIS_OPERATION = "You don't have permission to perform this operation!";
     public static final String ACTIVATE_URL_PATTERN = "%s/api/noauth/activate?activateToken=%s";
 
+    /**
+     * 是否授权
+     */
     @Value("${security.user_token_access_enabled}")
     @Getter
     private boolean userTokenAccessEnabled;
@@ -89,6 +92,10 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * 查看是否授权
+     * @return
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")
     @RequestMapping(value = "/user/tokenAccessEnabled", method = RequestMethod.GET)
     @ResponseBody

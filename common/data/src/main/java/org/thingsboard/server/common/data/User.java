@@ -26,6 +26,9 @@ import org.thingsboard.server.common.data.security.Authority;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+/**
+ * 用户信息类
+ */
 @EqualsAndHashCode(callSuper = true)
 public class User extends SearchTextBasedWithAdditionalInfo<UserId> implements HasName, HasTenantId, HasCustomerId {
 
