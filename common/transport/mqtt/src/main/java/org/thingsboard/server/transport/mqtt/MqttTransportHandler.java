@@ -170,6 +170,7 @@ public class MqttTransportHandler extends ChannelInboundHandlerAdapter implement
 
     }
 
+    //发布消息
     private void processPublish(ChannelHandlerContext ctx, MqttPublishMessage mqttMsg) {
         if (!checkConnected(ctx, mqttMsg)) {
             return;
@@ -183,6 +184,7 @@ public class MqttTransportHandler extends ChannelInboundHandlerAdapter implement
                 handleGatewayPublishMsg(topicName, msgId, mqttMsg);
             }
         } else {
+            //处理设备发布的消息
             processDevicePublish(ctx, mqttMsg, topicName, msgId);
         }
     }
@@ -214,6 +216,14 @@ public class MqttTransportHandler extends ChannelInboundHandlerAdapter implement
         }
     }
 
+
+    /**
+     * 处理设备发布的消息
+     * @param ctx
+     * @param mqttMsg
+     * @param topicName
+     * @param msgId
+     */
     private void processDevicePublish(ChannelHandlerContext ctx, MqttPublishMessage mqttMsg, String topicName, int msgId) {
         try {
             if (topicName.equals(MqttTopics.DEVICE_TELEMETRY_TOPIC)) {
