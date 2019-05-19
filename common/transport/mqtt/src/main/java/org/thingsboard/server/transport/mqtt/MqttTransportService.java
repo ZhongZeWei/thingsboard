@@ -37,6 +37,7 @@ import javax.annotation.PreDestroy;
 @Service("MqttTransportService")
 @ConditionalOnExpression("'${transport.type:null}'=='null' || ('${transport.type}'=='local' && '${transport.mqtt.enabled}'=='true')")
 @Slf4j
+//用于启动服务
 public class MqttTransportService {
 
     @Value("${transport.mqtt.bind_address}")
@@ -64,11 +65,14 @@ public class MqttTransportService {
         ResourceLeakDetector.setLevel(ResourceLeakDetector.Level.valueOf(leakDetectorLevel.toUpperCase()));
 
         log.info("Starting MQTT transport...");
+        //启动两个线程组
         bossGroup = new NioEventLoopGroup(bossGroupThreadCount);
         workerGroup = new NioEventLoopGroup(workerGroupThreadCount);
+        //ServerBootstrap 启动服务的一个引导类
         ServerBootstrap b = new ServerBootstrap();
         b.group(bossGroup, workerGroup)
                 .channel(NioServerSocketChannel.class)
+                //childHandler用于处理IO事件。比如读取客户端消息
                 .childHandler(new MqttTransportServerInitializer(context));
 
         serverChannel = b.bind(host, port).sync().channel();

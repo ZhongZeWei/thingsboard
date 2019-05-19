@@ -36,6 +36,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Represents an MqttClientImpl connected to a single MQTT server. Will try to keep the connection going at all times
+ * mqtt客户端
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
 final class MqttClientImpl implements MqttClient {

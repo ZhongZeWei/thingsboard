@@ -83,6 +83,7 @@ import static io.netty.handler.codec.mqtt.MqttQoS.FAILURE;
  * @author Andrew Shvayka
  */
 @Slf4j
+//处理接受来的信息
 public class MqttTransportHandler extends ChannelInboundHandlerAdapter implements GenericFutureListener<Future<? super Void>>, SessionMsgListener {
 
     private static final MqttQoS MAX_SUPPORTED_QOS_LVL = AT_LEAST_ONCE;
@@ -109,10 +110,13 @@ public class MqttTransportHandler extends ChannelInboundHandlerAdapter implement
         this.deviceSessionCtx = new DeviceSessionCtx(sessionId, mqttQoSMap);
     }
 
+    //channelRead0方法中有俩个参数。一个为ChannelHandlerContext（通首的上下文）。一个是MqttMessage（客户端来的MQTT报文）。
+    // 我们接下来动作都是跟MqttMessage来做相关的逻辑处理
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         log.trace("[{}] Processing msg: {}", sessionId, msg);
         if (msg instanceof MqttMessage) {
+            //开始处理逻辑
             processMqttMsg(ctx, (MqttMessage) msg);
         } else {
             ctx.close();
@@ -129,18 +133,23 @@ public class MqttTransportHandler extends ChannelInboundHandlerAdapter implement
         deviceSessionCtx.setChannel(ctx);
         switch (msg.fixedHeader().messageType()) {
             case CONNECT:
+                //连接服务器情况
                 processConnect(ctx, (MqttConnectMessage) msg);
                 break;
             case PUBLISH:
+                //发布消息情况
                 processPublish(ctx, (MqttPublishMessage) msg);
                 break;
             case SUBSCRIBE:
+                //订阅情况
                 processSubscribe(ctx, (MqttSubscribeMessage) msg);
                 break;
             case UNSUBSCRIBE:
+                //取消订阅情况
                 processUnsubscribe(ctx, (MqttUnsubscribeMessage) msg);
                 break;
             case PINGREQ:
+                //心跳情况
                 if (checkConnected(ctx, msg)) {
                     ctx.writeAndFlush(new MqttMessage(new MqttFixedHeader(PINGRESP, false, AT_MOST_ONCE, false, 0)));
                     transportService.reportActivity(sessionInfo);
@@ -150,6 +159,7 @@ public class MqttTransportHandler extends ChannelInboundHandlerAdapter implement
                 }
                 break;
             case DISCONNECT:
+                //断开连接情况
                 if (checkConnected(ctx, msg)) {
                     processDisconnect(ctx);
                 }

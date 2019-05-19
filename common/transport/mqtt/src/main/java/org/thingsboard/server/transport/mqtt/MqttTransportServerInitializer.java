@@ -41,11 +41,11 @@ public class MqttTransportServerInitializer extends ChannelInitializer<SocketCha
             pipeline.addLast(sslHandler);
             context.setSslHandler(sslHandler);
         }
+        //处理MQTT协议传来的信息进行处理
         pipeline.addLast("decoder", new MqttDecoder(context.getMaxPayloadSize()));
         pipeline.addLast("encoder", MqttEncoder.INSTANCE);
-
+        //BrokerHandler类就是笔者来处理每一个报文对应的响应
         MqttTransportHandler handler = new MqttTransportHandler(context);
-
         pipeline.addLast(handler);
         ch.closeFuture().addListener(handler);
     }

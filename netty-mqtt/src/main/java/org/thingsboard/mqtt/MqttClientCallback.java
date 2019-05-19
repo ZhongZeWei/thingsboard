@@ -17,6 +17,7 @@ package org.thingsboard.mqtt;
 
 /**
  * Created by Valerii Sosliuk on 12/30/2017.
+ * 客户端的回调，分失败和成功的情况
  */
 public interface MqttClientCallback {
 

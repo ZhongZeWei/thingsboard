@@ -17,6 +17,7 @@ package org.thingsboard.server.transport.mqtt;
 
 /**
  * Created by ashvayka on 19.01.17.
+ * mqtt 订阅主题
  */
 public class MqttTopics {
 

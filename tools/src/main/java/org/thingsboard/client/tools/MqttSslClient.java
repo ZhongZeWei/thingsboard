@@ -35,7 +35,7 @@ import java.security.KeyStore;
 @Slf4j
 public class MqttSslClient {
 
-
+//mqtt地址
     private static final String MQTT_URL = "ssl://localhost:1883";
 
     private static final String CLIENT_ID = "MQTT_SSL_JAVA_CLIENT";

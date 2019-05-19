@@ -50,6 +50,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by valerii.sosliuk on 11/6/16.
+ * BrokerSessionHelper类就是用于存放当前服务器上相关通道信息。同时用于发送返回的相关报文。
  */
 @Slf4j
 @Component("MqttSslHandlerProvider")

@@ -18,10 +18,14 @@ package org.thingsboard.mqtt;
 import io.netty.channel.ChannelFuture;
 import io.netty.handler.codec.mqtt.MqttConnectReturnCode;
 
+/**
+ * 链接结果通知
+ */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public final class MqttConnectResult {
 
     private final boolean success;
+    //mqtt 链接状态的枚举
     private final MqttConnectReturnCode returnCode;
     private final ChannelFuture closeFuture;
 

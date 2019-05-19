@@ -17,6 +17,7 @@ package org.thingsboard.mqtt;
 
 /**
  * Created by Valerii Sosliuk on 12/26/2017.
+ * mqtt异常类
  */
 public class ChannelClosedException extends RuntimeException {
 

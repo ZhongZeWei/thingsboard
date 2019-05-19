@@ -23,6 +23,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 
+/**
+ * mqtt服务启动类
+ */
 @SpringBootConfiguration
 @EnableAsync
 @EnableScheduling
