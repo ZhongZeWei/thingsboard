@@ -22,6 +22,7 @@ import org.thingsboard.server.gen.cluster.ClusterAPIProtos;
 
 /**
  * @author Andrew Shvayka
+ * 应用消息监听类
  */
 
 public interface RpcMsgListener {

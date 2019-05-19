@@ -21,6 +21,9 @@ import org.thingsboard.server.common.data.id.TenantId;
 import org.thingsboard.server.common.data.page.TextPageData;
 import org.thingsboard.server.common.data.page.TextPageLink;
 
+/**
+ * 基础服务接口
+ */
 public interface TenantService {
 
     Tenant findTenantById(TenantId tenantId);

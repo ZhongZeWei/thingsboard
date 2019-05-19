@@ -43,6 +43,9 @@ import java.util.List;
 
 import static org.thingsboard.server.dao.service.Validator.validateId;
 
+/**
+ *服务实现类
+ */
 @Service
 @Slf4j
 public class TenantServiceImpl extends AbstractEntityService implements TenantService {

@@ -19,6 +19,7 @@ import org.thingsboard.server.gen.cluster.ClusterAPIProtos;
 
 /**
  * @author Andrew Shvayka
+ * 应用会话监听类
  */
 public interface GrpcSessionListener {
 
