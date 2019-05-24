@@ -28,6 +28,7 @@ import java.util.Map;
  */
 @Configuration
 @ConfigurationProperties(prefix = "spring.mvc.cors")
+//CORS配置，属性来着thingsboard.yml文件
 public class MvcCorsProperties {
 
     private Map<String, CorsConfiguration> mappings = new HashMap<>();

@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+//读取配置文件并自动封装成实体类，日志打印设置
 @ConfigurationProperties(prefix = "audit-log.logging-level")
 public class AuditLogLevelProperties {
 

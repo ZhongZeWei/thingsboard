@@ -38,6 +38,9 @@ import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+/**
+ * web过滤器
+ */
 @Component
 public class RateLimitProcessingFilter extends GenericFilterBean {
 

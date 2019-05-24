@@ -91,7 +91,7 @@ plugins:
   # Comma separated package list used during classpath scanning for plugins
   scan_packages: "${PLUGINS_SCAN_PACKAGES:org.thingsboard.server.extensions,org.thingsboard.rule.engine}"
 
-# Security parameters
+# Security parameters 鉴权属性
 security:
   # JWT Token parameters
   jwt:

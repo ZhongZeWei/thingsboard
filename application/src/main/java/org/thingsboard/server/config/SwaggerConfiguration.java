@@ -43,6 +43,10 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 public class SwaggerConfiguration {
 
+    /**
+     * Swagger需要配置Docket
+     * @return
+     */
       @Bean
       public Docket thingsboardApi() {
           TypeResolver typeResolver = new TypeResolver();
@@ -99,7 +103,11 @@ public class SwaggerConfiguration {
                     new SecurityReference("X-Authorization", authorizationScopes));
       }
 
-      private ApiInfo apiInfo() {
+    /**
+     * api信息
+     * @return
+     */
+    private ApiInfo apiInfo() {
             return new ApiInfoBuilder()
                 .title("Thingsboard REST API")
                 .description("For instructions how to authorize requests please visit <a href='http://thingsboard.io/docs/reference/rest-api/'>REST API documentation page</a>.")

@@ -21,6 +21,7 @@ import org.thingsboard.server.service.security.model.token.JwtToken;
 
 @Configuration
 @ConfigurationProperties(prefix = "security.jwt")
+//鉴权配置，属性来着thingsboard.yml文件
 public class JwtSettings {
     /**
      * {@link JwtToken} will expire after this time.

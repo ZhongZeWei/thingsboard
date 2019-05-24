@@ -26,6 +26,10 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * Spring 实现 SchedulingConfigurer 接口完成动态定时任务
+ * 多线程并发定时任务,不同于单线程执行
+ */
 @Configuration
 @EnableScheduling
 public class SchedulingConfiguration implements SchedulingConfigurer {
