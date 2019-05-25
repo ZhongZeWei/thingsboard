@@ -53,6 +53,12 @@ public class WidgetTypeController extends BaseController {
         }
     }
 
+    /**
+     * 保存
+     * @param widgetType
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")
     @RequestMapping(value = "/widgetType", method = RequestMethod.POST)
     @ResponseBody
@@ -75,6 +81,11 @@ public class WidgetTypeController extends BaseController {
         }
     }
 
+    /**
+     * 删除
+     * @param strWidgetTypeId
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")
     @RequestMapping(value = "/widgetType/{widgetTypeId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
@@ -89,6 +100,13 @@ public class WidgetTypeController extends BaseController {
         }
     }
 
+    /**
+     * 查找部件类型
+     * @param isSystem
+     * @param bundleAlias
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")
     @RequestMapping(value = "/widgetTypes", params = { "isSystem", "bundleAlias"}, method = RequestMethod.GET)
     @ResponseBody
@@ -98,6 +116,7 @@ public class WidgetTypeController extends BaseController {
         try {
             TenantId tenantId;
             if (isSystem) {
+                //获取系统租户的id
                 tenantId = TenantId.SYS_TENANT_ID;
             } else {
                 tenantId = getCurrentUser().getTenantId();

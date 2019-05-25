@@ -31,6 +31,7 @@ import java.util.Optional;
 
 /**
  * @author Andrew Shvayka
+ * 组件生命周期消息
  */
 @ToString
 public class ComponentLifecycleMsg implements TbActorMsg, TenantAwareMsg, ToAllNodesMsg {

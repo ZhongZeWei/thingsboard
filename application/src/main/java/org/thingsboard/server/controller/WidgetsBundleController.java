@@ -42,6 +42,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class WidgetsBundleController extends BaseController {
 
+    /**
+     * 工具id查找
+     * @param strWidgetsBundleId
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/widgetsBundle/{widgetsBundleId}", method = RequestMethod.GET)
     @ResponseBody
@@ -55,6 +61,13 @@ public class WidgetsBundleController extends BaseController {
         }
     }
 
+
+    /**
+     * 保存
+     * @param widgetsBundle
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")
     @RequestMapping(value = "/widgetsBundle", method = RequestMethod.POST)
     @ResponseBody
@@ -77,6 +90,12 @@ public class WidgetsBundleController extends BaseController {
         }
     }
 
+
+    /**
+     * 删除
+     * @param strWidgetsBundleId
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")
     @RequestMapping(value = "/widgetsBundle/{widgetsBundleId}", method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
@@ -91,6 +110,16 @@ public class WidgetsBundleController extends BaseController {
         }
     }
 
+
+    /**
+     * 查找部件包，限制查询个数
+     * @param limit
+     * @param textSearch
+     * @param idOffset
+     * @param textOffset
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/widgetsBundles", params = { "limit" }, method = RequestMethod.GET)
     @ResponseBody
@@ -112,6 +141,12 @@ public class WidgetsBundleController extends BaseController {
         }
     }
 
+
+    /**
+     * 查找部件包，没限制查询个数
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/widgetsBundles", method = RequestMethod.GET)
     @ResponseBody

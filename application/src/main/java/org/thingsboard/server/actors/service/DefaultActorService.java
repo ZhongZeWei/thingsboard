@@ -177,13 +177,16 @@ public class DefaultActorService implements ActorService {
      * @param msg
      */
     public void broadcast(ToAllNodesMsg msg) {
+        //设置上下文
         actorContext.getEncodingService().encode(msg);
+
         rpcService.broadcast(new RpcBroadcastMsg(ClusterAPIProtos.ClusterMessage
                 .newBuilder()
                 .setPayload(ByteString
                         .copyFrom(actorContext.getEncodingService().encode(msg)))
                 .setMessageType(CLUSTER_ACTOR_MESSAGE)
                 .build()));
+        //
         appActor.tell(msg, ActorRef.noSender());
     }
 

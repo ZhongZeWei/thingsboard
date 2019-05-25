@@ -75,6 +75,7 @@ public class WidgetsBundleServiceImpl implements WidgetsBundleService {
         if (widgetsBundle == null) {
             throw new IncorrectParameterException("Unable to delete non-existent widgets bundle.");
         }
+        //另外一张表的操作，删除部件类型
         widgetTypeService.deleteWidgetTypesByTenantIdAndBundleAlias(widgetsBundle.getTenantId(), widgetsBundle.getAlias());
         widgetsBundleDao.removeById(tenantId, widgetsBundleId.getId());
     }

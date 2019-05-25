@@ -64,6 +64,12 @@ public class DashboardController extends BaseController {
         return System.currentTimeMillis();
     }
 
+
+    /**
+     * 返回默认数据限制？？？
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN', 'CUSTOMER_USER')")
     @RequestMapping(value = "/dashboard/maxDatapointsLimit", method = RequestMethod.GET)
     @ResponseBody

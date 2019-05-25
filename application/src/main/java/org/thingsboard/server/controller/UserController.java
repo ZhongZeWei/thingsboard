@@ -93,7 +93,7 @@ public class UserController extends BaseController {
     }
 
     /**
-     * 查看是否授权
+     * 查看是否授权，默认已经授权
      * @return
      */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")

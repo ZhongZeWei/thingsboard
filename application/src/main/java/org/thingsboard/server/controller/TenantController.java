@@ -106,7 +106,8 @@ public class TenantController extends BaseController {
         }
     }
 
-    /**
+
+    /**todo 是物理删除，需要改善
      * 删除
      * @param strTenantId
      * @throws ThingsboardException
@@ -120,11 +121,11 @@ public class TenantController extends BaseController {
         try {
             //把条件封装到实体类
             TenantId tenantId = new TenantId(toUUID(strTenantId));
-            //检查是否有这个租客
+            //检查是否可以操作
             checkTenantId(tenantId, Operation.DELETE);
-            //删除用户
+            //删除用户，物理删除
             tenantService.deleteTenant(tenantId);
-            //权限检查
+            //发送消息
             actorService.onEntityStateChange(tenantId, tenantId, ComponentLifecycleEvent.DELETED);
         } catch (Exception e) {
             throw handleException(e);

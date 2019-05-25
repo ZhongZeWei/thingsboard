@@ -15,6 +15,7 @@
  */
 package org.thingsboard.server.common.data.security;
 
+//授权的枚举
 public enum Authority {
     
     SYS_ADMIN(0),
