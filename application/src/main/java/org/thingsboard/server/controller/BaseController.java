@@ -287,6 +287,7 @@ public abstract class BaseController {
         try {
             //非空检查
             validateId(tenantId, INCORRECT_TENANT_ID + tenantId);
+            //查一遍确定有没有
             Tenant tenant = tenantService.findTenantById(tenantId);
             checkNotNull(tenant);
 

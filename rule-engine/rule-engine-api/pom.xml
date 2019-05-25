@@ -48,11 +48,13 @@
             <artifactId>dao</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- 工具类-->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!--   日志工具     -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>

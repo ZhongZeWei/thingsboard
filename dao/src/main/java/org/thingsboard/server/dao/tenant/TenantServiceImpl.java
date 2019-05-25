@@ -50,6 +50,7 @@ import static org.thingsboard.server.dao.service.Validator.validateId;
 @Slf4j
 public class TenantServiceImpl extends AbstractEntityService implements TenantService {
 
+    //默认租客地区
     private static final String DEFAULT_TENANT_REGION = "Global";
     public static final String INCORRECT_TENANT_ID = "Incorrect tenantId ";
 
@@ -97,7 +98,9 @@ public class TenantServiceImpl extends AbstractEntityService implements TenantSe
     @Override
     public Tenant saveTenant(Tenant tenant) {
         log.trace("Executing saveTenant [{}]", tenant);
+        //设置默认区域
         tenant.setRegion(DEFAULT_TENANT_REGION);
+        //检验id？？？
         tenantValidator.validate(tenant, Tenant::getId);
         return tenantDao.save(tenant.getId(), tenant);
     }
@@ -122,7 +125,9 @@ public class TenantServiceImpl extends AbstractEntityService implements TenantSe
     public TextPageData<Tenant> findTenants(TextPageLink pageLink) {
         log.trace("Executing findTenants pageLink [{}]", pageLink);
         Validator.validatePageLink(pageLink, "Incorrect page link " + pageLink);
+        //dao层操作
         List<Tenant> tenants = tenantDao.findTenantsByRegion(new TenantId(EntityId.NULL_UUID), DEFAULT_TENANT_REGION, pageLink);
+        //把请求和结果带回去
         return new TextPageData<>(tenants, pageLink);
     }
 
@@ -132,6 +137,7 @@ public class TenantServiceImpl extends AbstractEntityService implements TenantSe
         tenantsRemover.removeEntities(new TenantId(EntityId.NULL_UUID),DEFAULT_TENANT_REGION);
     }
 
+    //数据校验，校验title和邮箱
     private DataValidator<Tenant> tenantValidator =
             new DataValidator<Tenant>() {
                 @Override

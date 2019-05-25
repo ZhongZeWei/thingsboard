@@ -52,14 +52,24 @@ public class TenantController extends BaseController {
     @Autowired
     private TenantService tenantService;
 
+    /**
+     * 根据id查询
+     * @param strTenantId
+     * @return
+     * @throws ThingsboardException
+     */
     @PreAuthorize("hasAnyAuthority('SYS_ADMIN', 'TENANT_ADMIN')")
     @RequestMapping(value = "/tenant/{tenantId}", method = RequestMethod.GET)
     @ResponseBody
     public Tenant getTenantById(@PathVariable("tenantId") String strTenantId) throws ThingsboardException {
+        //检查是否为空
         checkParameter("tenantId", strTenantId);
         try {
+            //把查询结果封装到实体类
             TenantId tenantId = new TenantId(toUUID(strTenantId));
+            //这里要检查，其实已经查了一次
             checkTenantId(tenantId, Operation.READ);
+            //有重复查询了一次
             return checkNotNull(tenantService.findTenantById(tenantId));
         } catch (Exception e) {
             throw handleException(e);
@@ -77,15 +87,17 @@ public class TenantController extends BaseController {
     @ResponseBody
     public Tenant saveTenant(@RequestBody Tenant tenant) throws ThingsboardException {
         try {
+            //判断tenant是否有id
             boolean newTenant = tenant.getId() == null;
-
+            //确认是新建操作
             Operation operation = newTenant ? Operation.CREATE : Operation.WRITE;
-
+            //授权
             accessControlService.checkPermission(getCurrentUser(), Resource.TENANT, operation,
                     tenant.getId(), tenant);
-
+            //保存用户
             tenant = checkNotNull(tenantService.saveTenant(tenant));
             if (newTenant) {
+
                 installScripts.createDefaultRuleChains(tenant.getId());
             }
             return tenant;
@@ -106,9 +118,11 @@ public class TenantController extends BaseController {
         //检查是否为空
         checkParameter("tenantId", strTenantId);
         try {
+            //把条件封装到实体类
             TenantId tenantId = new TenantId(toUUID(strTenantId));
             //检查是否有这个租客
             checkTenantId(tenantId, Operation.DELETE);
+            //删除用户
             tenantService.deleteTenant(tenantId);
             //权限检查
             actorService.onEntityStateChange(tenantId, tenantId, ComponentLifecycleEvent.DELETED);
@@ -135,7 +149,7 @@ public class TenantController extends BaseController {
                                            @RequestParam(required = false) String idOffset,
                                            @RequestParam(required = false) String textOffset) throws ThingsboardException {
         try {
-            //
+            //页面查询条件
             TextPageLink pageLink = createPageLink(limit, textSearch, idOffset, textOffset);
             //检查结果
             return checkNotNull(tenantService.findTenants(pageLink));

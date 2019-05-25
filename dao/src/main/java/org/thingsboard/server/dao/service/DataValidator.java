@@ -27,6 +27,10 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.function.Function;
 
+/**
+ * 数据校验类
+ * @param <D>
+ */
 @Slf4j
 public abstract class DataValidator<D extends BaseData<?>> {
 

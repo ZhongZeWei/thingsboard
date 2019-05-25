@@ -16,7 +16,7 @@
 package org.thingsboard.rule.engine.api;
 
 /**
- * @author Andrew Shvayka
+ * @author Andrew Shvayka   RPC异常状态枚举
  */
 public enum RpcError {
     NOT_FOUND, FORBIDDEN, NO_ACTIVE_CONNECTION, TIMEOUT, INTERNAL;
